@@ -1,0 +1,25 @@
+html, body{
+	margin:0;
+	height:100%;
+}
+
+#container-app{
+	height:100%;
+	width:100%;
+}
+
+#container-map{
+	height:100%;
+	width:100%;
+	background-color: #ccff66;
+}
+
+#search-bar{
+	position:absolute;
+	left: 30px;
+	top:30px;
+	height: 80%;
+	width:300px;
+	background-color:white;
+	border:solid 0.3px;
+}
