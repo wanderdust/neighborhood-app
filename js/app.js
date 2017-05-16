@@ -32,7 +32,7 @@ var Marker = function (data) {
 	this.title = ko.observable(data.title);
 	this.lat = ko.observable(data.lat);
 	this.lng = ko.observable(data.lng);
-}
+};
 
 
 var viewModel = function () {
@@ -46,13 +46,19 @@ var viewModel = function () {
 		that.allMarkers.push(new Marker(data))
 	});
 
+	this.currentMarker = ko.observable(this.allMarkers()[0]);
+
 	this.allMarkers().forEach(function (data) {
 		that.map().addMarker({
 			lat: data.lat(),
 			lng: data.lng(),
 			title: data.title(),
 			infoWindow: {
-			  content: data.title(),
+			  content: data.title()
+			},
+			click: function () {
+				// Saves the current object in "this.currentMarker"
+				that.currentMarker(data);
 			}
 		})
 	});
