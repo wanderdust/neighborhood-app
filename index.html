@@ -14,12 +14,21 @@
 				<input type="search" placeholder="Buscar">
 			</div>
 			<div id="info-section">
-				
+				<h2 id="location-title">Plaza de los Jardinillos</h2>
+				<p id="location-adress" data-bind='text: placeAdress'></p>
+				<p id="location-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat.</p>
+				<div id="location-picture-container">
+					<img id="location-picture" src="" data-bind = 'attr: {src: getGoogleImg}'>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<script src="libraries/knockout-3.4.2.js"></script>
+	<script src="libraries/jquery-3.1.1.min.js"></script>
 	<script 
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtfGntsvL5dcCSil0t7haQQHQj230sfvY&callback">
 	</script>
