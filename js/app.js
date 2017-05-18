@@ -98,10 +98,17 @@ var viewModel = function () {
 
 			that.placeAdress(shortAdress)
 			return that.placeAdress();
-		}).fail (function(){
+		}).fail (function () {
 			that.placeAdress("No se ha encontrado ninguna dirección.")
 		})
 	})
+
+	// Button toggle to show or hide the ADD SECTION.
+	this.addSection = ko.observable (false);
+	this.toggleButton = function () {
+		that.addSection(!that.addSection())
+	}
+
 };
 
 ko.applyBindings(new viewModel);

@@ -7,8 +7,28 @@
 </head>
 <body>
 	<div id="container-app">
-		<div id="container-map"></div>
-		<div id="add-section"></div>
+		<div id="map-area">
+			<div id="container-map"></div>
+			<div id="add-section" data-bind='visible: addSection'>
+				<h2>Introduce los detalles del lugar</h2>
+				<div class="left-side">
+					<form>
+						<label class="label">Nombre:</label>
+						<input type="text" placeholder=" Ej: Biblioteca Francisco Umbral"><br>
+						<label class="label">Dirección:</label>
+						<input type="text"placeholder=" Ej: Calle Las Norias, 39, 28221"><br>
+						<label class="label">Imagen URL:</label>
+						<input type="text" placeholder=" Ej: https://Biblioteca_Municipal_Francisco_Umbral.JPG">
+					</form>
+				</div>
+				<div class="right-side">
+					<p class="label">Descripción</p>
+					<textarea rows="7" cols="35" maxlength="200"></textarea>
+				</div>
+				<button id="submit">Añadir</button>
+				<button id="cancel" data-bind='click: toggleButton'>Cancelar</button>
+			</div>
+		</div>
 		<div id="side-bar">
 			<div id="search-section">
 				<h2>Descubre Majadahonda</h2>
@@ -17,12 +37,13 @@
 			<div id="info-section">
 				<h2 id="location-title" data-bind='text: currentMarker().title'>Plaza de los Jardinillos</h2>
 				<p id="location-adress" data-bind='text: placeAdress'></p>
-				<p id="location-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat.</p>
+				<p id="location-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod consectetur adipisicing elit, sed do eiusmod consequat.</p>
 				<div id="location-picture-container">
 					<img id="location-picture" src="" data-bind = 'attr: {src: getGoogleImg}'>
+				</div>
+				<div id="add-button-div">
+					<button id="add-button" data-bind='click: toggleButton'>
+					<img src="assets/plus-icon.png"> Añadir un lugar</button>
 				</div>
 			</div>
 		</div>
