@@ -64,6 +64,10 @@ html, body {
 	margin-bottom: 0.2em;
 }
 
+#location-title::first-letter {
+	text-transform: uppercase;
+}
+
 #location-adress {
 	margin-top: 0.5em;
 	padding-left: 5px;

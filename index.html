@@ -14,18 +14,16 @@
 				<div class="left-side">
 					<form>
 						<label class="label">Nombre:</label>
-						<input type="text" placeholder=" Ej: Biblioteca Francisco Umbral"><br>
+						<input type="text" placeholder=" Ej: Biblioteca Francisco Umbral" data-bind='textInput: newTitle'><br>
 						<label class="label">Dirección:</label>
-						<input type="text"placeholder=" Ej: Calle Las Norias, 39, 28221"><br>
-						<label class="label">Imagen URL:</label>
-						<input type="text" placeholder=" Ej: https://Biblioteca_Municipal_Francisco_Umbral.JPG">
+						<input type="text"placeholder=" Ej: Calle Las Norias, 39 " data-bind='textInput: newAdress'><br>
 					</form>
 				</div>
 				<div class="right-side">
 					<p class="label">Descripción</p>
-					<textarea rows="7" cols="35" maxlength="200"></textarea>
+					<textarea rows="7" cols="35" maxlength="200" data-bind='textInput: newInfo'></textarea>
 				</div>
-				<button id="submit">Añadir</button>
+				<button id="submit" data-bind='click: function () {addNewPlace(); toggleButton()}'>Añadir</button>
 				<button id="cancel" data-bind='click: toggleButton'>Cancelar</button>
 			</div>
 		</div>
@@ -37,7 +35,7 @@
 			<div id="info-section">
 				<h2 id="location-title" data-bind='text: currentMarker().title'>Plaza de los Jardinillos</h2>
 				<p id="location-adress" data-bind='text: placeAdress'></p>
-				<p id="location-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod consectetur adipisicing elit, sed do eiusmod consequat.</p>
+				<p id="location-description" data-bind='text: currentMarker().info'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod consectetur adipisicing elit, sed do eiusmod consequat.</p>
 				<div id="location-picture-container">
 					<img id="location-picture" src="" data-bind = 'attr: {src: getGoogleImg}'>
 				</div>
