@@ -17,8 +17,8 @@ var model = {
 	},
 	{
 		title: "Gastrotasca la Oficina",
-		lat: 40.471198,
-		lng: -3.870349,
+		lat: 40.4711161,
+		lng: -3.8708896,
 	},
 	{
 		title: "Restaurante la Cuba",
@@ -29,6 +29,11 @@ var model = {
 		title: "Casa Pedro",
 		lat: 40.474006,
 		lng: -3.875809,
+	},
+	{
+		title: "Parque Colón",
+		lat: 40.468433,
+		lng: -3.868786,
 	}
 	]
 };
@@ -79,7 +84,8 @@ var viewModel = function () {
 
 	})
 
-	this.placeAdress = ko.observable("C/ Plaza de los jardinillos");
+	// API for getting an adress from Google.
+	this.placeAdress = ko.observable("");
 
 	this.getAdress = ko.computed (function (){
 		var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" +
@@ -91,8 +97,9 @@ var viewModel = function () {
 			var shortAdress = object[1].short_name + ", " + object[0].short_name + ", " + object[6].short_name;
 
 			that.placeAdress(shortAdress)
-			console.log(object)
 			return that.placeAdress();
+		}).fail (function(){
+			that.placeAdress("No se ha encontrado ninguna dirección.")
 		})
 	})
 };

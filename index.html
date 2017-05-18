@@ -8,13 +8,14 @@
 <body>
 	<div id="container-app">
 		<div id="container-map"></div>
+		<div id="add-section"></div>
 		<div id="side-bar">
 			<div id="search-section">
 				<h2>Descubre Majadahonda</h2>
 				<input type="search" placeholder="Buscar">
 			</div>
 			<div id="info-section">
-				<h2 id="location-title">Plaza de los Jardinillos</h2>
+				<h2 id="location-title" data-bind='text: currentMarker().title'>Plaza de los Jardinillos</h2>
 				<p id="location-adress" data-bind='text: placeAdress'></p>
 				<p id="location-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

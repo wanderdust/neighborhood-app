@@ -73,5 +73,15 @@ html, body {
 }
 
 #location-picture {
-	width:100%;
+	width: 100%;
+}
+
+#add-section {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	width: 73%;
+	height: 200px;
+	background-color: white;
+	border-top: solid 0.3px;
 }
