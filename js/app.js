@@ -81,7 +81,7 @@ var viewModel = function () {
 		that.initialArray().forEach(function (data) {
 			that.allMarkers.push(new Marker(data))
 		});
-	})
+	});
 
 	// Stores the current marker object.
 	this.currentMarker = ko.observable(this.allMarkers()[0]);
@@ -102,8 +102,14 @@ var viewModel = function () {
 					that.currentMarker(data);
 				}
 			})
-		});
-	})
+		})
+	});
+
+	// Updates the Current Object when Search list is clicked
+
+	this.updateCurrentMarker = function (data) {
+		that.currentMarker(data)
+	};
 
 	// API for Google street images.
 	this.getGoogleImg = ko.computed (function () {
@@ -113,8 +119,7 @@ var viewModel = function () {
 			", Majadahonda&heading=100&pitch=10&scale=2&key=" + 
 			googleKey);
 		return this.imgSrc();
-
-	})
+	});
 
 	// API for getting an adress from Google.
 	this.placeAdress = ko.observable("");
@@ -168,7 +173,9 @@ var viewModel = function () {
 			// Updates the array with the RAW Markers.
 			that.initialArray(parsedArray)
 		}).fail()
-	}
+	};
+
+
 
 };
 

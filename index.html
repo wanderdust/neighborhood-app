@@ -31,6 +31,11 @@
 			<div id="search-section">
 				<h2>Descubre Majadahonda</h2>
 				<input type="search" placeholder="Buscar">
+				<div id="places-list" data-bind='foreach: allMarkers'>
+					<div class="list" data-bind='click: $parent.updateCurrentMarker'>
+						<p data-bind='text: $data.title'></p>
+					</div>
+				</div>
 			</div>
 			<div id="info-section">
 				<h2 id="location-title" data-bind='text: currentMarker().title'>Plaza de los Jardinillos</h2>
