@@ -14,14 +14,14 @@
 				<div class="left-side">
 					<form>
 						<label class="label">Nombre:</label>
-						<input type="text" placeholder=" Ej: Biblioteca Francisco Umbral" data-bind='textInput: newTitle'><br>
+						<input type="text" placeholder=" Ej: Biblioteca Francisco Umbral" data-bind='value: newTitle'><br>
 						<label class="label">Dirección:</label>
-						<input type="text"placeholder=" Ej: Calle Las Norias, 39 " data-bind='textInput: newAdress'><br>
+						<input type="text"placeholder=" Ej: Calle Las Norias, 39 " data-bind='value: newAdress'><br>
 					</form>
 				</div>
 				<div class="right-side">
 					<p class="label">Descripción</p>
-					<textarea rows="7" cols="35" maxlength="200" data-bind='textInput: newInfo'></textarea>
+					<textarea rows="7" cols="35" maxlength="200" data-bind='value: newInfo'></textarea>
 				</div>
 				<button id="submit" data-bind='click: function () {addNewPlace(); toggleButton()}'>Añadir</button>
 				<button id="cancel" data-bind='click: toggleButton'>Cancelar</button>
@@ -47,7 +47,7 @@
 					<img id="location-picture" src="" data-bind = 'attr: {src: getGoogleImg}'>
 				</div>
 				<div id="add-button-div">
-					<button id="add-button" data-bind='click: toggleButton'>
+					<button id="add-button" data-bind='click: toggleButton, clearInputCells'>
 					<img src="assets/plus-icon.png"> Añadir un lugar</button>
 				</div>
 			</div>

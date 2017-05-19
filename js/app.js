@@ -170,13 +170,18 @@ var viewModel = function () {
 			localStorage.placesArray = JSON.stringify(parsedArray);
 
 			// Updates the array with the RAW Markers.
-			that.initialArray(parsedArray)
-		}).fail()
+			that.initialArray(parsedArray);
+
+			//Clears all the inputs.
+			that.newTitle("");
+			that.newAdress("");
+			that.newInfo("");
+		}).fail();
 	};
 
+	
 	// Creates a live search.
 	this.filter = ko.observable();
-  
   	this.places = ko.observableArray(that.allMarkers());
   
 	this.visiblePlaces = ko.computed(function(){
@@ -184,7 +189,7 @@ var viewModel = function () {
 	        if(!that.filter() || place.title().toLowerCase().indexOf(that.filter().toLowerCase()) !== -1)
 	            return place;
 	    });
-	},this);  
+	},this);
 };
 
 ko.applyBindings(new viewModel);
