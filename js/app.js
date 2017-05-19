@@ -106,7 +106,6 @@ var viewModel = function () {
 	});
 
 	// Updates the Current Object when Search list is clicked
-
 	this.updateCurrentMarker = function (data) {
 		that.currentMarker(data)
 	};
@@ -175,8 +174,17 @@ var viewModel = function () {
 		}).fail()
 	};
 
-
-
+	// Creates a live search.
+	this.filter = ko.observable();
+  
+  	this.places = ko.observableArray(that.allMarkers());
+  
+	this.visiblePlaces = ko.computed(function(){
+	    return this.places().filter(function(place){
+	        if(!that.filter() || place.title().toLowerCase().indexOf(that.filter().toLowerCase()) !== -1)
+	            return place;
+	    });
+	},this);  
 };
 
 ko.applyBindings(new viewModel);
