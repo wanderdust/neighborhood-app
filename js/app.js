@@ -58,18 +58,36 @@ var viewModel = function () {
 	// Initial map object.
 	this.map = ko.observable(new GMaps(model.initialMap));
 
-	// We pass all initial markers into the observable array.
+	// 'initialArray' loads the initial data, and JSON data if there is any as RAW OBJECTS.
+	this.initialArray = ko.observableArray([]);
+
+	this.init = ko.computed (function () {
+		if (!localStorage.placesArray) {
+			localStorage.placesArray = JSON.stringify(model.markers);
+			var data = JSON.parse(localStorage.placesArray);
+			that.initialArray(data);
+			localStorage.placesArray = JSON.stringify(data)
+
+		}else {
+			that.initialArray(JSON.parse(localStorage.placesArray));
+		}
+	})
+
+	// Array that will store markers objects converted into observables.
 	this.allMarkers = ko.observableArray([]);
 
-	model.markers.forEach(function (data) {
-		that.allMarkers.push(new Marker(data))
-	});
+	// Converts objects into observables and adds them to the array.
+	this.updateArray = ko.computed(function () {
+		that.initialArray().forEach(function (data) {
+			that.allMarkers.push(new Marker(data))
+		});
+	})
 
 	// Stores the current marker object.
 	this.currentMarker = ko.observable(this.allMarkers()[0]);
 
-	// Updates the viewModel for every array element.
-	this.updateArray = ko.computed( function () {
+	// Updates the view for every array element.
+	this.updateView = ko.computed( function () {
 		that.allMarkers().forEach(function (data) {
 			that.map().addMarker({
 				lat: data.lat(),
@@ -87,7 +105,7 @@ var viewModel = function () {
 		});
 	})
 
-	// API for Google images.
+	// API for Google street images.
 	this.getGoogleImg = ko.computed (function () {
 		var googleKey = "AIzaSyAViOicVJ6HM_KqQdnRORuUyBf832SgvFU";
 		this.imgSrc = ko.observable("https://maps.googleapis.com/maps/api/streetview?size=600x300&location=" +
@@ -141,9 +159,14 @@ var viewModel = function () {
 			newObject.lat = coord.lat;
 			newObject.lng = coord.lng;
 			newObject.info = that.newInfo();
-			that.allMarkers.push(new Marker(newObject));
-			console.log(that.allMarkers())
 
+			// Updates LocalStorage.
+			var parsedArray = JSON.parse(localStorage.placesArray);
+			parsedArray.push(newObject);
+			localStorage.placesArray = JSON.stringify(parsedArray);
+
+			// Updates the array with the RAW Markers.
+			that.initialArray(parsedArray)
 		}).fail()
 	}
 
