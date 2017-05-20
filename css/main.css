@@ -15,7 +15,20 @@ html, body {
 	height: 100%;
 }
 
-#container-map {
+#map-area #refresh {
+	position: absolute;
+	top: 15px;
+	right: 30px;
+	z-index: 9999;
+	height: 20px;
+	width: auto;
+}
+
+#map-area #refresh:hover {
+	cursor: pointer;
+}
+
+#map-area #container-map {
 	position: absolute;
 	right: 0px;
 	height: 100%;

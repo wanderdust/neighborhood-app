@@ -61,12 +61,17 @@ var viewModel = function () {
 	// 'initialArray' loads the initial data, and JSON data if there is any as RAW OBJECTS.
 	this.initialArray = ko.observableArray([]);
 
+	// Assigns a localStorage to the initial Array and passes that value to an initialArray.
+	this.initialData = function () {
+		localStorage.placesArray = JSON.stringify(model.markers);
+		var data = JSON.parse(localStorage.placesArray);
+		that.initialArray(data);
+		localStorage.placesArray = JSON.stringify(data)
+	}
+
 	this.init = ko.computed (function () {
 		if (!localStorage.placesArray) {
-			localStorage.placesArray = JSON.stringify(model.markers);
-			var data = JSON.parse(localStorage.placesArray);
-			that.initialArray(data);
-			localStorage.placesArray = JSON.stringify(data)
+			that.initialData();
 
 		}else {
 			that.initialArray(JSON.parse(localStorage.placesArray));
@@ -195,16 +200,26 @@ var viewModel = function () {
 	    });
 	},this);
 
+	// Eliminates a Marker from the array.
 	this.deletePlace = function (data) {
 		console.log(data.title());
 		function indexFinder (element) {
 			return element.title == data.title();
 		}
+		// Updates initialArray.
 		var index = that.initialArray().findIndex(indexFinder);
 		that.initialArray.splice(index, 1);
+
+		// Updates LocalStorage
+		var parsedArray = JSON.parse(localStorage.placesArray);
+			parsedArray.splice(index, 1);
+			localStorage.placesArray = JSON.stringify(parsedArray);
 	};
 
-
+	// Resets all the Markers to the original Data.
+	this.resetToDefault = function () {
+		that.initialData();
+	}
 };
 
 ko.applyBindings(new viewModel);
