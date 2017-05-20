@@ -1,49 +1,13 @@
 var model = {
 	initialMap: {
   		div: '#container-map',
-  		lat: 40.4717956,
-  		lng: -3.8747407
+  		lat: 40.474263,
+  		lng: -3.867406
 	},
-	markers: [
-	{
-		title: "La Flaca",
-		lat: 40.466688,
-		lng: -3.866338,
-		info: "Bar de copas de ambiente joven en majadahonda. Precios economicos."
-	},
-	{
-		title: "Cines Zoco",
-		lat: 40.466527,
-		lng: -3.866565,
-		info: "Un cine sin ánimo de lucro, los ingresos obtenidos se destinan a mejorar el cine con lo que pretendemos hacer un cine de los ciudadanos para los ciudadano"
-	},
-	{
-		title: "Gastrotasca la Oficina",
-		lat: 40.4711161,
-		lng: -3.8708896,
-		info: "Si quieres tomarte unas cañas en un buen ambiente, mientras suena buena musica, y pudiendo comer cosas ricas, ¡este es tu sitio!"
-	},
-	{
-		title: "Restaurante la Cuba",
-		lat: 40.475229,
-		lng: -3.877946,
-		info: "Tanto en invierno con su chimeneas interiores, como de primavera a otoño con sus emblemáticas terrazas de exterior, lo hacen un lugar privilegiado del que disfrutar de una agradable velada en cualquier día del año."
-	},
-	{
-		title: "Casa Pedro",
-		lat: 40.474006,
-		lng: -3.875809,
-		info: "Buen restaurante en Majadahonda con aires andaluces."
-	},
-	{
-		title: "Parque Colón",
-		lat: 40.468433,
-		lng: -3.868786,
-		info: "Parque más grande de majadahonda donde se reúnen los jóvenes en verano."
-	}
-	]
+	markers: markersArray
 };
 
+// To convert array elements into observables.
 var Marker = function (data) {
 	this.title = ko.observable(data.title);
 	this.lat = ko.observable(data.lat);
@@ -58,7 +22,7 @@ var viewModel = function () {
 	// Initial map object.
 	this.map = ko.observable(new GMaps(model.initialMap));
 
-	// 'initialArray' loads the initial data, and JSON data if there is any as RAW OBJECTS.
+	// 'initialArray' loads the initial data, and JSON data if there is any as RAW variables.
 	this.initialArray = ko.observableArray([]);
 
 	// Assigns a localStorage to the initial Array and passes that value to an initialArray.
@@ -69,6 +33,7 @@ var viewModel = function () {
 		localStorage.placesArray = JSON.stringify(data)
 	}
 
+	// If there is no localStorage it creates it. If there is, it loads the saved data.
 	this.init = ko.computed (function () {
 		if (!localStorage.placesArray) {
 			that.initialData();
@@ -78,10 +43,9 @@ var viewModel = function () {
 		}
 	})
 
-	// Array that will store markers objects converted into observables.
+	// AllMarkers stores markers array with observables.
 	this.allMarkers = ko.observableArray([]);
 
-	// Converts objects into observables and adds them to the array.
 	this.updateArray = ko.computed(function () {
 		that.allMarkers([])
 		that.initialArray().forEach(function (data) {
@@ -113,7 +77,7 @@ var viewModel = function () {
 		})
 	});
 
-	// Updates the Current Object when Search list is clicked
+	// Updates the Current Object.
 	this.updateCurrentMarker = function (data) {
 		that.currentMarker(data)
 	};
@@ -202,7 +166,6 @@ var viewModel = function () {
 
 	// Eliminates a Marker from the array.
 	this.deletePlace = function (data) {
-		console.log(data.title());
 		function indexFinder (element) {
 			return element.title == data.title();
 		}
@@ -218,7 +181,9 @@ var viewModel = function () {
 
 	// Resets all the Markers to the original Data.
 	this.resetToDefault = function () {
-		that.initialData();
+		if(confirm("Toda la información se reseteará a los valores originales.\n¿Estás seguro de que quieres continuar?")){
+			that.initialData();
+		}
 	}
 };
 
