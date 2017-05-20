@@ -78,6 +78,7 @@ var viewModel = function () {
 
 	// Converts objects into observables and adds them to the array.
 	this.updateArray = ko.computed(function () {
+		that.allMarkers([])
 		that.initialArray().forEach(function (data) {
 			that.allMarkers.push(new Marker(data))
 		});
@@ -170,7 +171,7 @@ var viewModel = function () {
 			localStorage.placesArray = JSON.stringify(parsedArray);
 
 			// Updates the array with the RAW Markers.
-			that.initialArray(parsedArray);
+			that.initialArray.push(newObject);
 
 			//Clears all the inputs.
 			that.newTitle("");
@@ -182,9 +183,10 @@ var viewModel = function () {
 	
 	// Creates a live search.
 	this.filter = ko.observable();
-  	this.places = ko.observableArray(that.allMarkers());
+  	this.places = ko.observableArray([]);
   
 	this.visiblePlaces = ko.computed(function(){
+		this.places(that.allMarkers())
 	    return this.places().filter(function(place){
 	        if(!that.filter() || place.title().toLowerCase().indexOf(that.filter().toLowerCase()) !== -1)
 	            return place;
