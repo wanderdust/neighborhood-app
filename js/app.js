@@ -89,6 +89,8 @@ var viewModel = function () {
 
 	// Updates the view for every array element.
 	this.updateView = ko.computed( function () {
+		//Removes all Markers to re-render the view.
+		that.map().removeMarkers();
 		that.allMarkers().forEach(function (data) {
 			that.map().addMarker({
 				lat: data.lat(),
