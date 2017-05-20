@@ -187,13 +187,24 @@ var viewModel = function () {
 	this.filter = ko.observable();
   	this.places = ko.observableArray([]);
   
-	this.visiblePlaces = ko.computed(function(){
+	this.visiblePlaces = ko.computed (function () {
 		this.places(that.allMarkers())
-	    return this.places().filter(function(place){
+	    return this.places().filter(function (place) {
 	        if(!that.filter() || place.title().toLowerCase().indexOf(that.filter().toLowerCase()) !== -1)
 	            return place;
 	    });
 	},this);
+
+	this.deletePlace = function (data) {
+		console.log(data.title());
+		function indexFinder (element) {
+			return element.title == data.title();
+		}
+		var index = that.initialArray().findIndex(indexFinder);
+		that.initialArray.splice(index, 1);
+	};
+
+
 };
 
 ko.applyBindings(new viewModel);

@@ -35,6 +35,7 @@
 				<div id="places-list" data-bind='foreach: visiblePlaces'>
 					<div class="list" data-bind='click: $parent.updateCurrentMarker'>
 						<p data-bind='text: title'></p>
+						<img class="delete" src="assets/delete-icon.png" data-bind="click: $parent.deletePlace">
 					</div>
 				</div>
 			</div>
