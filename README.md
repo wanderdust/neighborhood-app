@@ -1,7 +1,7 @@
 NEIGHBORHOOD APP - MAJADAHONDA
 =======
 
-[Live app here:][https://wanderdust.github.io/neighborhood-app/]
+Live app here: https://wanderdust.github.io/neighborhood-app/
 
 With this app you can find the best places to visit in Majadahonda! You will also be able to add your own favorite places and get rid of those that you don't like.
 
