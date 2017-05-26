@@ -10,6 +10,7 @@
 		<div id="map-area">
 			<div id="container-map"></div>
 			<img id="refresh" src="assets/refresh-icon.svg" data-bind='click: resetToDefault'>
+
 			<div id="add-section" data-bind='visible: addSection'>
 				<h2>Introduce los detalles del lugar</h2>
 				<div class="left-side">
@@ -19,6 +20,7 @@
 						<label class="label">Dirección:</label>
 						<input type="text"placeholder=" Ej: Calle Las Norias, 39 " data-bind='value: newAdress'><br>
 					</form>
+					<div id="error" data-bind="visible: throwError"><p><img src="assets/error_icon.png"> Por favor rellene todos los campos.</p></div>
 				</div>
 				<div class="right-side">
 					<p class="label">Descripción</p>

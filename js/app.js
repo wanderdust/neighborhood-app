@@ -117,38 +117,48 @@ var viewModel = function () {
 		that.addSection(!that.addSection());
 	};
 
-	// Adds new elements to the array.
+	// Input values to add a new place.
 	this.newTitle = ko.observable("");
 	this.newAdress = ko.observable("");
 	this.newInfo = ko.observable("");
-	
+
+	// Makes error visible when there are emtpy title or adress fields.
+	this.throwError = ko.observable(false)
+
+	// Adds new elements to the array.
 	this.addNewPlace = function () {
 		var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
 		that.newAdress()+ 
 		",Majadahonda&key=AIzaSyAViOicVJ6HM_KqQdnRORuUyBf832SgvFU";
 
-		// Converts the adress into coordinates.
-		$.getJSON(url, function (data) {
-			var newObject = {};
-			var coord = data.results[0].geometry.location;
-			newObject.title = that.newTitle();
-			newObject.lat = coord.lat;
-			newObject.lng = coord.lng;
-			newObject.info = that.newInfo();
+		// Verifies that all inputs are not empty.
+		if(that.newTitle() !== "" && that.newAdress() !==""){
+			// Converts the adress into coordinates.
+			$.getJSON(url, function (data) {
+				var newObject = {};
+				var coord = data.results[0].geometry.location;
+				newObject.title = that.newTitle();
+				newObject.lat = coord.lat;
+				newObject.lng = coord.lng;
+				newObject.info = that.newInfo();
 
-			// Updates LocalStorage.
-			var parsedArray = JSON.parse(localStorage.placesArray);
-			parsedArray.push(newObject);
-			localStorage.placesArray = JSON.stringify(parsedArray);
+				// Updates LocalStorage.
+				var parsedArray = JSON.parse(localStorage.placesArray);
+				parsedArray.push(newObject);
+				localStorage.placesArray = JSON.stringify(parsedArray);
 
-			// Updates the array with the RAW Markers.
-			that.initialArray.push(newObject);
+				// Updates the array with the RAW Markers.
+				that.initialArray.push(newObject);
 
-			//Clears all the inputs.
-			that.newTitle("");
-			that.newAdress("");
-			that.newInfo("");
-		}).fail();
+				//Clears all the inputs.
+				that.newTitle("");
+				that.newAdress("");
+				that.newInfo("");
+
+				// When inputs are filled doesn't show any errors.
+				that.throwError(false)
+			})
+		}else(that.throwError(true))
 	};
 
 	
@@ -166,6 +176,7 @@ var viewModel = function () {
 
 	// Eliminates a Marker from the array.
 	this.deletePlace = function (data) {
+		// Finds the clicked element's index.
 		function indexFinder (element) {
 			return element.title == data.title();
 		}
