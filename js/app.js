@@ -132,7 +132,7 @@ var viewModel = function () {
 		",Majadahonda&key=AIzaSyAViOicVJ6HM_KqQdnRORuUyBf832SgvFU";
 
 		// Verifies that all inputs are not empty.
-		if(that.newTitle() !== "" && that.newTitle() !== " " && that.newAdress() !==""){
+		if(that.newTitle().trim() !== ""  && that.newAdress().trim() !=="" && that.newInfo().trim() !==""){
 			// Converts the adress into coordinates.
 			$.getJSON(url, function (data) {
 				var newObject = {};
