@@ -132,7 +132,7 @@ var viewModel = function () {
 		",Majadahonda&key=AIzaSyAViOicVJ6HM_KqQdnRORuUyBf832SgvFU";
 
 		// Verifies that all inputs are not empty.
-		if(that.newTitle() !== "" && that.newAdress() !==""){
+		if(that.newTitle() !== "" && that.newTitle() !== " " && that.newAdress() !==""){
 			// Converts the adress into coordinates.
 			$.getJSON(url, function (data) {
 				var newObject = {};
@@ -167,12 +167,12 @@ var viewModel = function () {
   	this.places = ko.observableArray([]);
   
 	this.visiblePlaces = ko.computed (function () {
-		this.places(that.allMarkers())
-	    return this.places().filter(function (place) {
+		that.places(that.allMarkers())
+	    return that.places().filter(function (place) {
 	        if(!that.filter() || place.title().toLowerCase().indexOf(that.filter().toLowerCase()) !== -1)
 	            return place;
 	    });
-	},this);
+	});
 
 	// Eliminates a Marker from the array.
 	this.deletePlace = function (data) {

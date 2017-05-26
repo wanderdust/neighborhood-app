@@ -20,11 +20,13 @@
 						<label class="label">Dirección:</label>
 						<input type="text"placeholder=" Ej: Calle Las Norias, 39 " data-bind='value: newAdress'><br>
 					</form>
-					<div id="error" data-bind="visible: throwError"><p><img src="assets/error_icon.png"> Por favor rellene todos los campos.</p></div>
+					<div id="error" data-bind="visible: throwError">
+						<p><img src="assets/error_icon.png"> Por favor rellene todos los campos.</p>
+					</div>
 				</div>
 				<div class="right-side">
 					<p class="label">Descripción</p>
-					<textarea rows="7" cols="35" maxlength="200" data-bind='value: newInfo'></textarea>
+					<textarea rows="8" cols="35" maxlength="200" data-bind='value: newInfo'></textarea>
 				</div>
 				<button id="submit" data-bind='click: function () {addNewPlace(); toggleButton()}'>Añadir</button>
 				<button id="cancel" data-bind='click: toggleButton'>Cancelar</button>

@@ -9,13 +9,13 @@ var markersArray = [
 	title: "La Flaca",
 	lat: 40.466688,
 	lng: -3.866338,
-	info: "Bar de copas de ambiente joven en majadahonda. Precios economicos."
+	info: "Bar de copas de ambiente joven en majadahonda. Precios económicos."
 },
 {
 	title: "Cines Zoco",
 	lat: 40.466527,
 	lng: -3.866565,
-	info: "Un cine sin ánimo de lucro, los ingresos obtenidos se destinan a mejorar el cine con lo que pretendemos hacer un cine de los ciudadanos para los ciudadano"
+	info: "Un cine sin ánimo de lucro, los ingresos obtenidos se destinan a mejorar el cine con lo que pretenden hacer un cine de los ciudadanos para los ciudadanos."
 },
 {
 	title: "Gastrotasca la Oficina",
@@ -27,7 +27,7 @@ var markersArray = [
 	title: "Restaurante la Cuba",
 	lat: 40.475229,
 	lng: -3.877946,
-	info: "Tanto en invierno con su chimeneas interiores, como de primavera a otoño con sus emblemáticas terrazas de exterior, lo hacen un lugar privilegiado del que disfrutar de una agradable velada en cualquier día del año."
+	info: "Un lugar privilegiado donde podrás disfrutar de una agradable velada en cualquier día del año."
 },
 {
 	title: "Casa Pedro",
@@ -39,12 +39,12 @@ var markersArray = [
 	title: "El Chigre",
 	lat: 40.4708996,
 	lng: -3.8724715,
-	info: "Bar/Restaurante vegetariano y vegano de comida tradicional Asturiana"
+	info: "Bar/Restaurante vegetariano y vegano de comida tradicional Asturiana."
 },
 {
-	title: "Estacion de tren",
+	title: "Estación de tren",
 	lat: 40.474344,
 	lng: -3.8457312,
-	info: "Estacion de trenes de Majadahonda"
+	info: "Estacion de trenes de Majadahonda con conexiones al centro de Madrid y pueblos cercanos."
 }
 ];

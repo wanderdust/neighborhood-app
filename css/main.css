@@ -12,6 +12,7 @@ html, body {
 	position:absolute;
 	right: 0px;
 	width: 73%;
+	min-width: 600px;
 	height: 100%;
 }
 
@@ -185,20 +186,21 @@ html, body {
 	background-color: white;
 	border: solid 0.3px;
 	padding: 10px;
-	min-width: 880px;
+	min-width: 600px;
 }
 
 #add-section .left-side {
 	position:absolute;
 	left: 0px;
-	width: 70%;
+	width: 65%;
 	padding-left: 10px;
 }
 
 #add-section .right-side {
 	position: absolute;
-	right: 0px;
-	width: 30%;
+	right: 20px;
+	top: 0px;
+	width: 35%;
 }
 
 #add-section .right-side p{
@@ -207,7 +209,8 @@ html, body {
 
 #add-section .right-side textarea{
 	resize: none;
-	font: "Times New Roman", Times, serif, 12px;
+	font-family: inherit;
+	font-size: inherit;
 }
 
 #add-section h2 {
