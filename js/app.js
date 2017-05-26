@@ -176,18 +176,22 @@ var viewModel = function () {
 
 	// Eliminates a Marker from the array.
 	this.deletePlace = function (data) {
-		// Finds the clicked element's index.
-		function indexFinder (element) {
-			return element.title == data.title();
-		}
-		// Updates initialArray.
-		var index = that.initialArray().findIndex(indexFinder);
-		that.initialArray.splice(index, 1);
 
-		// Updates LocalStorage
-		var parsedArray = JSON.parse(localStorage.placesArray);
-			parsedArray.splice(index, 1);
-			localStorage.placesArray = JSON.stringify(parsedArray);
+		// Makes sure that there is at least 1 location in the map.
+		if(that.initialArray().length > 1) {
+			// Finds the clicked element's index.
+			function indexFinder (element) {
+				return element.title == data.title();
+			}
+			// Updates initialArray.
+			var index = that.initialArray().findIndex(indexFinder);
+			that.initialArray.splice(index, 1);
+
+			// Updates LocalStorage
+			var parsedArray = JSON.parse(localStorage.placesArray);
+				parsedArray.splice(index, 1);
+				localStorage.placesArray = JSON.stringify(parsedArray);
+		}else (alert ("Debe existir al menos un lugar en el Mapa."))
 	};
 
 	// Resets all the Markers to the original Data.
