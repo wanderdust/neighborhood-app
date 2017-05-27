@@ -96,7 +96,7 @@ var viewModel = function () {
 	this.placeAdress = ko.observable("");
 
 	this.getAdress = ko.computed (function (){
-		var url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+		var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
 			that.currentMarker().lat() + "," + that.currentMarker().lng() + "&sensor=true";
 
 		$.getJSON(url, function(data){
