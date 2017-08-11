@@ -18,7 +18,9 @@
 						<label class="label">Nombre:</label>
 						<input type="text" placeholder=" Ej: Biblioteca Francisco Umbral" data-bind='value: newTitle'><br>
 						<label class="label">Dirección:</label>
-						<input type="text"placeholder=" Ej: Calle Las Norias, 39 " data-bind='value: newAdress'><br>
+						<input type="text"placeholder=" Ej: Calle Las Norias, 39 " data-bind='value: newAdress' id="direccion"><br>
+						<label class="label">Imagen:</label>
+						<input type="text" placeholder=" Ej: https://majadahonda.es/parque-colon/" data-bind='value: newImage' id="imagen"><br>
 					</form>
 					<div id="error" data-bind="visible: throwError">
 						<p><img src="assets/error_icon.png"> Por favor rellene todos los campos.</p>
@@ -26,7 +28,7 @@
 				</div>
 				<div class="right-side">
 					<p class="label">Descripción</p>
-					<textarea rows="8" cols="35" maxlength="200" data-bind='value: newInfo'></textarea>
+					<textarea id="placeInfo" maxlength="150" data-bind='value: newInfo'></textarea>
 				</div>
 				<button id="submit" data-bind='click: function () {addNewPlace(); toggleButton()}'>Añadir</button>
 				<button id="cancel" data-bind='click: toggleButton'>Cancelar</button>
@@ -50,7 +52,7 @@
 				<p id="location-adress" data-bind='text: placeAdress'></p>
 				<p id="location-description" data-bind='text: currentMarker().info'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod consectetur adipisicing elit, sed do eiusmod consequat.</p>
 				<div id="location-picture-container">
-					<img id="location-picture" src="" data-bind = 'attr: {src: getGoogleImg}'>
+					<img id="location-picture" src="" data-bind = 'attr: {src: currentMarker().locImg}'>
 				</div>
 				<div id="add-button-div">
 					<button id="add-button" data-bind='click: toggleButton, clearInputCells'>

@@ -13,6 +13,7 @@ var Marker = function (data) {
 	this.lat = ko.observable(data.lat);
 	this.lng = ko.observable(data.lng);
 	this.info = ko.observable(data.info);
+	this.locImg = ko.observable(data.locImg)
 };
 
 
@@ -66,6 +67,7 @@ var viewModel = function () {
 				lng: data.lng(),
 				title: data.title(),
 				info: data.info(),
+				locImg: data.locImg(),
 				infoWindow: {
 				  content: data.title()
 				},
@@ -81,16 +83,6 @@ var viewModel = function () {
 	this.updateCurrentMarker = function (data) {
 		that.currentMarker(data)
 	};
-
-	// API for Google street images.
-	this.getGoogleImg = ko.computed (function () {
-		var googleKey = "AIzaSyAViOicVJ6HM_KqQdnRORuUyBf832SgvFU";
-		this.imgSrc = ko.observable("https://maps.googleapis.com/maps/api/streetview?size=600x300&location=" +
-			that.currentMarker().title() +
-			", Majadahonda&heading=100&pitch=10&scale=2&key=" + 
-			googleKey);
-		return this.imgSrc();
-	});
 
 	// API for getting an adress from Google.
 	this.placeAdress = ko.observable("");
@@ -121,6 +113,7 @@ var viewModel = function () {
 	this.newTitle = ko.observable("");
 	this.newAdress = ko.observable("");
 	this.newInfo = ko.observable("");
+	this.newImage = ko.observable("");
 
 	// Makes error visible when there are emtpy title or adress fields.
 	this.throwError = ko.observable(false)
@@ -132,7 +125,7 @@ var viewModel = function () {
 		",Majadahonda&key=AIzaSyAViOicVJ6HM_KqQdnRORuUyBf832SgvFU";
 
 		// Verifies that all inputs are not empty.
-		if(that.newTitle().trim() !== ""  && that.newAdress().trim() !=="" && that.newInfo().trim() !==""){
+		if(that.newTitle().trim() !== ""  && that.newAdress().trim() !=="" && that.newInfo().trim() !=="" && that.newImage().trim() !==""){
 			// Converts the adress into coordinates.
 			$.getJSON(url, function (data) {
 				var newObject = {};
@@ -141,6 +134,7 @@ var viewModel = function () {
 				newObject.lat = coord.lat;
 				newObject.lng = coord.lng;
 				newObject.info = that.newInfo();
+				newObject.locImg = that.newImage();
 
 				// Updates LocalStorage.
 				var parsedArray = JSON.parse(localStorage.placesArray);
@@ -154,6 +148,7 @@ var viewModel = function () {
 				that.newTitle("");
 				that.newAdress("");
 				that.newInfo("");
+				that.newImage("");
 
 				// When inputs are filled doesn't show any errors.
 				that.throwError(false)
