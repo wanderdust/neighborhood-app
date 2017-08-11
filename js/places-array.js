@@ -10,7 +10,7 @@ var markersArray = [
 	title: "Ayuntamiento",
 	lat: 40.472736,
 	lng: -3.872418,
-	info: "Situado en el centro de la Gran Vía",
+	info: "Situado en el centro de la Gran Vía. A su entrada se puede ver una respresentación en grande del escudo del Pueblo.",
 	locImg:"assets/img/ayuntamiento.jpg"
 },
 {
@@ -45,7 +45,7 @@ var markersArray = [
 	title: "Biblioteca Francisco Umbral",
 	lat: 40.470893,
 	lng: -3.865056,
-	info: "Biblioteca municipal nombrada tras Francisco Umbral, un poeta, periodista, novelista, biógrafo y ensayista español que residió en Majadahonda",
+	info: "Biblioteca municipal nombrada tras Francisco Umbral, un poeta, periodista, novelista, biógrafo y ensayista español que residió en Majadahonda.",
 	locImg: "assets/img/fu.jpg"
 },
 {
