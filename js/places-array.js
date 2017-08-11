@@ -38,7 +38,7 @@ var markersArray = [
 	title: "Casa de la cultura",
 	lat: 40.468679,
 	lng: -3.870349,
-	info: "Las actividades culturales del municipio se centran en torno a la Casa de Cultura Carmen Conde, localizada en la Plaza Colón, donde se inicia la Gran Vía. Es de estilo atemporal.",
+	info: "Las actividades culturales del municipio se centran en torno a la Casa de Cultura Carmen Conde, localizada en la Plaza Colón, donde se inicia la Gran Vía.",
 	locImg:  "assets/img/casa-cultura.jpg"
 },
 {
